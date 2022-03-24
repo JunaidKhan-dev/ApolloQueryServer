@@ -5,8 +5,10 @@ import { Category } from "./resolvers/Category.js"
 import { Product } from "./resolvers/Products.js"
 import { categories, products, reviews } from "./db.js"
 import { Review } from "./resolvers/Review.js"
+import { Mutation } from "./resolvers/Mutation.js"
 const resolvers = {
   Query,
+  Mutation,
   Category,
   Product,
   Review,

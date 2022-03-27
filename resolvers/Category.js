@@ -1,9 +1,9 @@
 export const Category = {
   products: (parent, args, context) => {
     const categoryId = parent.id
-    const { products } = context
+    const { db } = context
     const { filter = null } = args
-    let filteredProducts = products.filter(
+    let filteredProducts = db.products.filter(
       (product) => product.categoryId === categoryId
     )
     if (filter) {

@@ -1,8 +1,8 @@
 export const Query = {
   products: (parent, args, context) => {
-    const { products, reviews } = context
+    const { db } = context
     const { filter = null } = args
-    let filteredProducts = products
+    let filteredProducts = db.products
     if (filter) {
       const { onSale, avgRating } = filter
       if (onSale) {
@@ -11,7 +11,7 @@ export const Query = {
       // only show the product which has avg Rating (sumOfRating / numOfReview) above input of avgRating
       if ([1, 2, 3, 4, 5].includes(avgRating)) {
         filteredProducts = filteredProducts.filter((product) => {
-          const filteredReviews = reviews.filter(
+          const filteredReviews = db.reviews.filter(
             (review) => review.productId === product.id
           )
 
@@ -32,27 +32,27 @@ export const Query = {
   },
   product: (parent, args, context) => {
     const productID = args.id
-    const { products } = context
-    return products.find((product) => product.id === productID)
+    const { db } = context
+    return db.products.find((product) => product.id === productID)
   },
 
   categories: (parent, args, context) => {
-    const { categories } = context
-    return categories
+    const { db } = context
+    return db.categories
   },
 
   category: (parent, args, context) => {
     const categoryID = args.id
-    const { categories } = context
-    return categories.find((category) => category.id === categoryID)
+    const { db } = context
+    return db.categories.find((category) => category.id === categoryID)
   },
   reviews: (parent, args, context) => {
-    const { reviews } = context
-    return reviews
+    const { db } = context
+    return db.reviews
   },
   review: (parent, args, context) => {
     const reviewId = args.id
-    const { reviews } = context
-    return reviews.find((review) => review.id === reviewId)
+    const { db } = context
+    return db.reviews.find((review) => review.id === reviewId)
   },
 }

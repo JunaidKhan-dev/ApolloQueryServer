@@ -1,8 +1,8 @@
 export const Review = {
   product: (parent, args, context) => {
-    const { products } = context
+    const { db } = context
     const { productId } = parent
 
-    return products.find((product) => product.id === productId)
+    return db.products.find((product) => product.id === productId)
   },
 }

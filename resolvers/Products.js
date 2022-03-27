@@ -1,14 +1,14 @@
 export const Product = {
   category: (parent, args, context) => {
     const categoryId = parent.categoryId
-    const { categories } = context
+    const { db } = context
 
-    return categories.find((category) => category.id === categoryId)
+    return db.categories.find((category) => category.id === categoryId)
   },
   reviews: (parent, args, context) => {
     const { id } = parent
-    const { reviews } = context
-    const filterReviews = reviews.filter((review) => {
+    const { db } = context
+    const filterReviews = db.reviews.filter((review) => {
       return review.productId === id
     })
 
